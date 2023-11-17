@@ -25,15 +25,26 @@ const Todo = () => {
 
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-br from-zinc-700 to-zinc-900">
-      <div className="relative w-full max-w-3xl overflow-hidden rounded-xl bg-white p-6">
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        transition={{
+          duration: 1
+        }}
+        className="relative w-full max-w-3xl overflow-hidden rounded-xl bg-white p-6"
+      >
         <motion.div
           className="from-red absolute left-0 top-0 h-[10px] rounded bg-gradient-to-r from-purple-500 to-pink-500"
-          initial={{width: 0}}
-          animate={{width: progress}}
+          initial={{ width: 0 }}
+          animate={{ width: progress }}
         ></motion.div>
         <Form setList={setList} list={list} />
         <List list={list} setList={setList} />
-      </div>
+      </motion.div>
     </div>
   );
 };
