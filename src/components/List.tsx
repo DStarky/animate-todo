@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 import { Todo } from "src/types";
 import OneTask from "./OneTask";
 
@@ -10,17 +12,18 @@ const List = ({ list, setList }: ListProps) => {
   return (
     <>
       {list.length > 0 && (
-        <ul className="mt-4 rounded border-[1px] border-zinc-800 px-2 py-2  flex flex-col gap-2">
+        <motion.ul
+          initial={{ borderColor: "#fff" }}
+          animate={{ borderColor: "#27272a" }}
+          transition={{
+            duration: 0.5,
+          }}
+          className="mt-4 flex flex-col gap-2 rounded border-[1px]  px-2 py-2"
+        >
           {list.map((todo) => (
-            <OneTask
-              key={todo.id}
-
-              setList={setList}
-              list={list}
-              {...todo}
-            />
+            <OneTask key={todo.id} setList={setList} list={list} {...todo} />
           ))}
-        </ul>
+        </motion.ul>
       )}
     </>
   );

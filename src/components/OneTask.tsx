@@ -29,7 +29,7 @@ const OneTask = ({
   };
 
   return (
-    <MotionConfig transition={{ duration: 0.25}}>
+    <MotionConfig transition={{ duration: 0.25 }}>
       <AnimatePresence>
         <motion.div
           initial={{ height: "0" }}
@@ -44,6 +44,9 @@ const OneTask = ({
             initial={false}
             animate={{
               backgroundColor: isComplete ? "#dde2e7" : "#fff",
+            }}
+            whileHover={{
+              backgroundColor: "#dde2e7",
             }}
           >
             <div className="relative h-5 w-5 rounded-full border-[1px] border-zinc-800 ">
