@@ -30,7 +30,7 @@ const OneTask = ({ id, title, isComplete, setList, list }: OneTaskProps) => {
         animate={{
           height: "auto",
         }}
-        className="overflow-hidden"
+        className="overflow-hidden grid"
         layout
       >
         <AnimatePresence>

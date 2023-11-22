@@ -54,7 +54,7 @@ const Form = ({ setList, list }: FormProps) => {
           delay: 0.5,
         }}
         type="text"
-        className="flex-1 rounded border-[1px] border-zinc-800 px-3 py-2 focus-within:outline-none focus:ring-4 focus:ring-blue-300 focus:placeholder:text-transparent mr-3"
+        className="mr-3 flex-1 rounded border-[1px] border-zinc-800 px-3 py-2 focus-within:outline-none focus:ring-4 focus:ring-blue-300 focus:placeholder:text-transparent"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Input your task here"
@@ -72,7 +72,7 @@ const Form = ({ setList, list }: FormProps) => {
         transition={{
           delay: 0.5,
         }}
-        className="rounded bg-zinc-800 px-3 py-2 text-white hover:bg-zinc-700 focus:ring-4 focus:ring-blue-300"
+        className="rounded bg-zinc-800 px-3 py-2 text-white hover:bg-zinc-700 "
       >
         Submit new task
       </motion.button>
@@ -82,7 +82,6 @@ const Form = ({ setList, list }: FormProps) => {
             key={"reset"}
             initial={{
               width: 0,
-              backgroundColor: "#fff",
               opacity: 0,
             }}
             animate={status}
@@ -92,9 +91,6 @@ const Form = ({ setList, list }: FormProps) => {
                 opacity: 1,
               },
             }}
-            whileHover={{
-              backgroundColor: "#dde2e7",
-            }}
             exit={{
               width: 0,
               opacity: 0,
@@ -103,7 +99,7 @@ const Form = ({ setList, list }: FormProps) => {
           >
             <motion.button
               type="button"
-              className="whitespace-nowrap rounded border-[1px] border-zinc-800 px-3 py-2 focus:ring-4 focus:ring-blue-300 ml-3"
+              className="ml-3 whitespace-nowrap rounded border-[1px] border-zinc-800 px-3  py-2 hover:bg-zinc-200"
               onClick={clearHandler}
             >
               Clear list
