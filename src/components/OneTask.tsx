@@ -7,22 +7,16 @@ type OneTaskProps = Todo &
     list: Todo[];
   };
 
-const OneTask = ({
-  id,
-  title,
-  isComplete,
-
-  setList,
-  list,
-}: OneTaskProps) => {
+const OneTask = ({ id, title, isComplete, setList, list }: OneTaskProps) => {
   const clickHandler = () => {
-    // Инвертируем статус isComplete
-    const updatedList = list.map((task) => {
-      if (task.id === id) {
-        return { ...task, isComplete: !task.isComplete };
-      }
-      return task;
-    });
+    // Удаляем задачу из списка
+    const updatedListWithoutTask = list.filter((task) => task.id !== id);
+
+    // Добавляем задачу в список в зависимости от isComplete
+    const updatedList =
+      isComplete === false
+        ? [...updatedListWithoutTask, { id, title, isComplete: !isComplete }]
+        : [{ id, title, isComplete: !isComplete }, ...updatedListWithoutTask];
 
     // Обновляем состояние списка
     setList(updatedList);
@@ -32,11 +26,13 @@ const OneTask = ({
     <MotionConfig transition={{ duration: 0.25 }}>
       <AnimatePresence>
         <motion.div
+          key={id}
           initial={{ height: "0" }}
           animate={{
             height: "auto",
           }}
           className="overflow-hidden"
+          layout
         >
           <motion.div
             onClick={clickHandler}
@@ -44,9 +40,13 @@ const OneTask = ({
             initial={false}
             animate={{
               backgroundColor: isComplete ? "#dde2e7" : "#fff",
+              color: "black",
             }}
             whileHover={{
               backgroundColor: "#dde2e7",
+            }}
+            transition={{
+              delay: 0.25,
             }}
           >
             <div className="relative h-5 w-5 rounded-full border-[1px] border-zinc-800 ">
@@ -67,6 +67,9 @@ const OneTask = ({
                     pathLength: isComplete ? 1 : 0,
                     opacity: isComplete ? 1 : 0,
                   }}
+                  transition={{
+                    delay: 0.25,
+                  }}
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   d="M4.5 12.75l6 6 9-13.5"
@@ -78,6 +81,9 @@ const OneTask = ({
               <motion.span
                 initial={false}
                 animate={{ width: isComplete ? "100%" : "0%" }}
+                transition={{
+                  delay: 0.25,
+                }}
                 className="absolute left-0 top-[55%] h-[1px] bg-zinc-800"
               />
             </p>
