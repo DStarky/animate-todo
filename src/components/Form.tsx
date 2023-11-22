@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { useState } from "react";
 import { Todo } from "src/types";
@@ -33,7 +33,7 @@ const Form = ({ setList, list }: FormProps) => {
   };
 
   return (
-    <form className="flex w-full gap-3" onSubmit={submitHandler}>
+    <form className="flex w-full" onSubmit={submitHandler}>
       <motion.input
         initial={{
           transform: "translateX(-100px)",
@@ -54,7 +54,7 @@ const Form = ({ setList, list }: FormProps) => {
           delay: 0.5,
         }}
         type="text"
-        className="flex-1 rounded border-[1px] border-zinc-800 px-3 py-2 focus-within:outline-none focus:ring-4 focus:ring-blue-300 focus:placeholder:text-transparent"
+        className="flex-1 rounded border-[1px] border-zinc-800 px-3 py-2 focus-within:outline-none focus:ring-4 focus:ring-blue-300 focus:placeholder:text-transparent mr-3"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Input your task here"
@@ -76,33 +76,41 @@ const Form = ({ setList, list }: FormProps) => {
       >
         Submit new task
       </motion.button>
-
-      {status === "narrow" && (
-        <motion.div
-          initial={{
-            width: 0,
-            backgroundColor: "#fff",
-          }}
-          animate={status}
-          variants={{
-            narrow: {
-              width: "auto",
-            },
-          }}
-          whileHover={{
-            backgroundColor: "#dde2e7",
-          }}
-          className="overflow-hidden "
-        >
-          <motion.button
-            type="button"
-            className="whitespace-nowrap rounded border-[1px] border-zinc-800 px-3 py-2 focus:ring-4 focus:ring-blue-300"
-            onClick={clearHandler}
+      <AnimatePresence>
+        {status === "narrow" && (
+          <motion.div
+            key={"reset"}
+            initial={{
+              width: 0,
+              backgroundColor: "#fff",
+              opacity: 0,
+            }}
+            animate={status}
+            variants={{
+              narrow: {
+                width: "auto",
+                opacity: 1,
+              },
+            }}
+            whileHover={{
+              backgroundColor: "#dde2e7",
+            }}
+            exit={{
+              width: 0,
+              opacity: 0,
+            }}
+            className="overflow-hidden "
           >
-            Clear list
-          </motion.button>
-        </motion.div>
-      )}
+            <motion.button
+              type="button"
+              className="whitespace-nowrap rounded border-[1px] border-zinc-800 px-3 py-2 focus:ring-4 focus:ring-blue-300 ml-3"
+              onClick={clearHandler}
+            >
+              Clear list
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </form>
   );
 };

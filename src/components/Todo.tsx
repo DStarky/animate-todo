@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import useMeasure from "react-use-measure";
 
 import { Todo } from "src/types";
 import Form from "./Form";
@@ -9,7 +8,6 @@ import List from "./List";
 const Todo = () => {
   const [list, setList] = useState<Todo[]>([]);
   const [progress, setProgress] = useState<string>("0");
-  const [ref, bounds] = useMeasure();
 
   useEffect(() => {
     const total = list.length;
@@ -50,38 +48,11 @@ const Todo = () => {
             width: progress,
           }}
           transition={{
-            delay: 0.25
+            delay: 0.25,
           }}
-
         ></motion.div>
         <Form setList={setList} list={list} />
-        <AnimatePresence>
-          {list.length > 0 && (
-            <motion.div
-              key={"my list"}
-              initial={{
-                height: 0,
-                opacity: 0,
-              }}
-              animate={{
-                height: bounds.height,
-                opacity: 1,
-              }}
-              exit={{
-                height: 0,
-                opacity: 0,
-              }}
-              transition={{
-                duration: 0.25,
-              }}
-              // className="overflow-hidden"
-            >
-              <div ref={ref}>
-                <List list={list} setList={setList} />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <List list={list} setList={setList} />
       </motion.div>
     </div>
   );
