@@ -37,7 +37,7 @@ const Todo = () => {
         transition={{
           duration: 1,
         }}
-        className="relative w-full max-w-3xl overflow-hidden rounded-xl bg-white p-6"
+        className="relative w-full max-w-3xl overflow-hidden rounded-xl bg-white p-6 m-5"
       >
         <motion.div
           className="from-red absolute left-0 top-0 h-[10px] rounded bg-gradient-to-r from-purple-500 to-pink-500"

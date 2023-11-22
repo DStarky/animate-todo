@@ -33,7 +33,7 @@ const Form = ({ setList, list }: FormProps) => {
   };
 
   return (
-    <form className="flex w-full" onSubmit={submitHandler}>
+    <form className="flex w-full max-sm:flex-col" onSubmit={submitHandler}>
       <motion.input
         initial={{
           transform: "translateX(-100px)",
@@ -54,7 +54,7 @@ const Form = ({ setList, list }: FormProps) => {
           delay: 0.5,
         }}
         type="text"
-        className="mr-3 flex-1 rounded border-[1px] border-zinc-800 px-3 py-2 focus-within:outline-none focus:ring-4 focus:ring-blue-300 focus:placeholder:text-transparent"
+        className="flex-1 rounded border-[1px] border-zinc-800 px-3 py-2 focus-within:outline-none focus:ring-4 focus:ring-blue-300 focus:placeholder:text-transparent max-sm:mb-3 sm:mr-3"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Input your task here"
@@ -72,7 +72,7 @@ const Form = ({ setList, list }: FormProps) => {
         transition={{
           delay: 0.5,
         }}
-        className="rounded bg-zinc-800 px-3 py-2 text-white hover:bg-zinc-700 "
+        className="flex-shrink-0 rounded bg-zinc-800 px-3 py-2 text-white hover:bg-zinc-700"
       >
         Submit new task
       </motion.button>
@@ -83,23 +83,26 @@ const Form = ({ setList, list }: FormProps) => {
             initial={{
               width: 0,
               opacity: 0,
+              height: 0,
             }}
             animate={status}
             variants={{
               narrow: {
                 width: "auto",
+                height: "auto",
                 opacity: 1,
               },
             }}
             exit={{
               width: 0,
               opacity: 0,
+              height: 0,
             }}
             className="overflow-hidden "
           >
             <motion.button
               type="button"
-              className="ml-3 whitespace-nowrap rounded border-[1px] border-zinc-800 px-3  py-2 hover:bg-zinc-200"
+              className="whitespace-nowrap rounded border-[1px] border-zinc-800 px-3 py-2 hover:bg-zinc-200  max-sm:mt-3 max-sm:w-full sm:ml-3"
               onClick={clearHandler}
             >
               Clear list
