@@ -50,7 +50,7 @@ const OneTask = ({ id, title, isComplete, setList, list }: OneTaskProps) => {
                 delay: 0.25,
               }}
             >
-              <div className="relative h-5 w-5 rounded-full border-[1px] border-zinc-800 ">
+              <div className="relative h-5 w-5 flex-shrink-0 rounded-full border-[1px] border-zinc-800">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
